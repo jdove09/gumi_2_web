@@ -317,6 +317,7 @@ img {
 
     <input type="hidden" id="hidden_row_count" value="<%= list.length %>">
 <% for(i = 0; i < list.length; i++) { %>
+    <input type="hidden" id="hidden_room_index_<%= i %>" value="<%= list[i].room_index %>">
     <input type="hidden" id="hidden_room_name_<%= i %>" value="<%= list[i].room_name %>">
     <input type="hidden" id="hidden_username_<%= i %>" value="<%= list[i].username %>">
     <input type="hidden" id="hidden_phone_number_<%= i %>" value="<%= list[i].phone_number %>">
@@ -324,11 +325,17 @@ img {
     <input type="hidden" id="hidden_Longitude_<%= i %>" value="<%= list[i].Longitude %>">
     <input type="hidden" id="hidden_explanation_<%= i %>" value="<%= list[i].explanation %>">
     <input type="hidden" id="hidden_state_num_<%= i %>" value="<%= list[i].state_num %>">
-    <input type="hidden" id="hidden_room_name_<%= i %>" value="<%= list[i].room_name %>">
     <input type="hidden" id="hidden_now_people_<%= i %>" value="<%= list[i].now_people %>">
     <input type="hidden" id="hidden_max_people_<%= i %>" value="<%= list[i].max_people %>">
     <input type="hidden" id="hidden_time_<%= i %>" value="<%= list[i].time %>">
     <!--*************************************************-->
+<% } %>
+<% for(i = 0; i < list2.length; i++) { %>
+  <input type="hidden" id="hidden_coment_id_<%= i %>" value="<%= list2[i].id %>">
+  <input type="hidden" id="hidden_mother_id_<%= i %>" value="<%= list2[i].mother_id %>">
+  <input type="hidden" id="hidden_coment_name_<%= i %>" value="<%= list2[i].name %>">
+  <input type="hidden" id="hidden_coment_coment_<%= i %>" value="<%= list2[i].content %>">
+  <!--*************************************************-->
 <% } %>
 
 

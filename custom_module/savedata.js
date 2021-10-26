@@ -1,1 +1,1 @@
-module.exports = {rlength: 0}
+module.exports = {main_length: 0, comment:0}
