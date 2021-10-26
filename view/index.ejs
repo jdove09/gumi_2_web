@@ -195,10 +195,12 @@ main small {
 }
 
 #nav-content li a {
+  font-size:20px;
   padding: 10px 5px;
   display: block;
   text-transform: uppercase;
   transition: color .1s;
+  margin-bottom: 80px;
 }
 
 #nav-content li a:hover {
@@ -279,7 +281,7 @@ img {
 <div class="page">
     <header style="z-index: 5;" tabindex="0">오늘 밥 한끼</header>
     <div class="map_wrap">
-        <div id="map" style="width:100%;height:100%;position:fixed;">
+        <div id="map" style="width:100%;height:100vh;position:relative;">
             <div style="z-index: 7;" id="nav-container">
                 <div class="bg"></div>
                 <div class="button" tabindex="0">
@@ -316,6 +318,8 @@ img {
 </div>
 
     <input type="hidden" id="hidden_row_count" value="<%= list.length %>">
+    <input type="hidden" id="hidden_coment_count" value="<%= list2.length %>">  <!--댓글 길이 -->
+
 <% for(i = 0; i < list.length; i++) { %>
     <input type="hidden" id="hidden_room_index_<%= i %>" value="<%= list[i].room_index %>">
     <input type="hidden" id="hidden_room_name_<%= i %>" value="<%= list[i].room_name %>">
@@ -581,17 +585,30 @@ $( document ).ready(function() {
 
 alert("행길이?" + $("#hidden_row_count").val())
 
+function add_coment(mother_id){
+  var text="";
+  for(var j=0; j<$("#hidden_coment_count").val(); j++){
+    if($("#hidden_mother_id_"+j).val()==mother_id){
+      text+="<span>"+$("#hidden_coment_name_"+j).val()+"</span><span>"+$("#hidden_coment_coment_"+j).val()+"</span><br>"
+    }
+  } 
+  return text
+}
+
 for(var i = 0; i <= $("#hidden_row_count").val();  i++){                 //배열에 push해주는값    jdove
 positions.push({
-    content: 
+    content:
     '<div style=\" BORDER: SOLID 1px;width: 400px; height: 250x; white-space: pre-line;\">'+
     '<span>방제목: '+$("#hidden_room_name_"+i).val()+'&nbsp; &nbsp;  </span> <span>인원수_'+$("#hidden_now_people_"+i).val()+'/'+$("#hidden_max_people_"+i).val()+'</span>'+
     '<div> 일시:'+ $("#hidden_time_"+i).val()+'</div>'+
     '<span> 유저이름:'+ $("#hidden_username_"+i).val()+'&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span> <span> 카카오톡ID ='+ $("#hidden_phone_number_"+i).val()+'</span>'+
     '<br><br><div>설명창</div>'+
     '<div style=\" BORDER: SOLID 1px;width: 100%; height: 100px; white-space: pre-line;\">'+ $("#hidden_explanation_"+i).val() +'</div><br>'+
-    '<span>김연웅</span><span>kakaoID가 들어갈 자리 미구현</span>'+
+    '</div>'+
+    '<div>'+
+    add_coment(i)+
     '</div>'
+    // <!--생략된 파트는 코멘트 div-->
     ,
     latlng: new kakao.maps.LatLng(parseFloat($("#hidden_Latitude_"+i).val()), parseFloat($("#hidden_Longitude_"+i).val()))      //jdove
 });
