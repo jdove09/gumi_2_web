@@ -1,7 +1,7 @@
 var mysql = require('mysql');
 //변경해야함
 var db_info = {
-    host: '192.168.100.63',
+    host: '192.168.0.6',
     port: '3306',
     user: 'developer',
     password: 'qlalfqjsgh123',

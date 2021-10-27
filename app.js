@@ -46,7 +46,6 @@ app.get('/write', function (req, res) {
 })
 
 app.post('/addcoment', function (req, res) {
-
   var body = req.body;
   console.log("행 길이"+test.comment_length);
   console.log(body);
@@ -57,9 +56,23 @@ app.post('/addcoment', function (req, res) {
     test.comment_length, body.hidden_mother, body.input_user, body.input_kakao
   ];
   console.log(params);
+  console.log("첫번째 쿼리 ( 댓글 인설트) 작동중........")
   conn.query(sql, params, function(err) {
       if(err) console.log('query is not excuted. insert fail...\n' + err);
-      else res.redirect('/');
+      else {
+        console.log("두번째 쿼리 ( 메인 현재인원)작동중.........");
+        sql = 'UPDATE testtable SET now_people= ? WHERE room_index= ?';
+        var params= [
+          body.hidden_personal_count, body.hidden_mother
+        ];
+        console.log("jdove"+params);
+        conn.query(sql, params,function (err) {
+          if(err) console.log('query is not excuted. Update fail...\n' + err);
+          else {
+            res.redirect('/');
+            }
+      });
+    }
   });
 });
 

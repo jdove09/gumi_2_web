@@ -587,7 +587,8 @@ alert("행길이?" + $("#hidden_row_count").val())
 
 function add_coment(mother_id){
   var text="";
-  for(var j=0; j<$("#hidden_coment_count").val(); j++){
+  var j=0
+  for( j=0; j<$("#hidden_coment_count").val(); j++){
     if($("#hidden_mother_id_"+j).val()==mother_id){
       text+="<span>"+$("#hidden_coment_name_"+j).val()+"</span><span>"+$("#hidden_coment_coment_"+j).val()+"</span><br>"
     }
@@ -595,7 +596,20 @@ function add_coment(mother_id){
   return text
 }
 
-for(var i = 0; i <= $("#hidden_row_count").val();  i++){                 //배열에 push해주는값    jdove
+function count_coment(mother_id){
+var coment_count = 2;
+  for( var j=0; j<$("#hidden_coment_count").val(); j++){
+    if($("#hidden_mother_id_"+j).val()==mother_id){
+      coment_count+=1;
+    }
+  } 
+  return coment_count
+}
+
+
+
+
+for(var i = 0; i <= $("#hidden_row_count").val();  i++){                 //배열에 push해주는값    jdove 동적생성
 positions.push({
     content:
     '<div style=\" BORDER: SOLID 1px;width: 400px; height: 250x; white-space: pre-line;\">'+
@@ -608,6 +622,7 @@ positions.push({
     '<div>'+
     add_coment(i)+  //참가인원에 해당하는 내용
     '<form action=\'/addcoment\' method=\'post\'>'+
+    '<input type=\"hidden\" value=\''+count_coment(i)+ '\'name = \"hidden_personal_count\">'+
     '<input type=\"hidden\" value=\''+i+ '\'name = \"hidden_mother\">'+
     '참여자:<input type=\"text\" name=\"input_user\">카카오톡ID<input type=\'text\' name=\'input_kakao\'> <button>참가하기</button>'+
     '</form>'+

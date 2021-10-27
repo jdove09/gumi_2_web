@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html style="overflow: hidden">
 <head>
     <meta charset="utf-8">
     <title>오늘 밥 한끼</title>
@@ -7,8 +7,8 @@
         * { box-sizing:border-box; }
 
 /* basic stylings ------------------------------------------ */
-body 				 { background:url(https://scotch.io/wp-content/uploads/2014/07/61.jpg); }
-.container 		{
+body              { background:url(https://scotch.io/wp-content/uploads/2014/07/61.jpg); }
+.container       {
   font-family:'Roboto';
   /* width:600px;
   margin:30px auto 0; */
@@ -17,25 +17,35 @@ body 				 { background:url(https://scotch.io/wp-content/uploads/2014/07/61.jpg);
   /* padding:10px 50px 50px; */
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 40%;
   transform: translate(-50%, -50%);
 }
-h2 		 {
-  text-align:center;
-  margin-bottom:50px;
+
+h2        {
+  margin-top:0px;
+  margin-left: 945px;
+  /* text-align:center;
+  /* margin-bottom:50px; */
+  /* 일단 keep */
 }
+
 /* h2 small {
   font-weight:normal;
   color:#888;
   display:block;
 }
-.footer 	{ text-align:center; }
+.footer    { text-align:center; }
 .footer a  { color:#53B2C8; } */
 
 /* form starting stylings ------------------------------- */
-.group 			  {
+.group            {
   position:relative;
   margin-bottom:18px;
+  left: 45%;
+
+}
+.btns {
+  margin-left:943px;
 }
 .num {
   margin-left: 330px;
@@ -48,7 +58,7 @@ h2 		 {
   -moz-transition:0.2s ease all;
   -webkit-transition:0.2s ease all;
 }
-input 				{
+input             {
   font-size:18px;
   padding:10px 10px 10px 5px;
   display:block;
@@ -56,10 +66,10 @@ input 				{
   border:none;
   border-bottom:1px solid #757575;
 }
-input:focus 		{ outline:none; }
+input:focus       { outline:none; }
 
 /* LABEL ======================================= */
-label,h5 				 {
+label,h5              {
   color:#999;
   font-size:18px;
   font-weight:normal;
@@ -87,15 +97,15 @@ button {
 
 }
 /* active state */
-input:focus ~ label, input:valid ~ label 		{
+input:focus ~ label, input:valid ~ label       {
   top:-20px;
   font-size:14px;
   color:#5264AE;
 }
 
 /* BOTTOM BARS ================================= */
-.bar 	{ position:relative; display:block; width:300px; }
-.bar:before, .bar:after 	{
+.bar    { position:relative; display:block; width:300px; }
+.bar:before, .bar:after    {
   content:'';
   height:2px;
   width:0;
@@ -138,16 +148,16 @@ input:focus ~ .highlight {
 
 /* ANIMATIONS ================ */
 @-webkit-keyframes inputHighlighter {
-	from { background:#5264AE; }
-  to 	{ width:0; background:transparent; }
+   from { background:#5264AE; }
+  to    { width:0; background:transparent; }
 }
 @-moz-keyframes inputHighlighter {
-	from { background:#5264AE; }
-  to 	{ width:0; background:transparent; }
+   from { background:#5264AE; }
+  to    { width:0; background:transparent; }
 }
 @keyframes inputHighlighter {
-	from { background:#5264AE; }
-  to 	{ width:0; background:transparent; }
+   from { background:#5264AE; }
+  to    { width:0; background:transparent; }
 }
 
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
@@ -157,7 +167,7 @@ input:focus ~ .highlight {
 .bg_white {background:#fff;}
 #menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
 #menu_wrap .option{text-align: center;}
-#menu_wrap .option p {margin:10px 0;}  
+#menu_wrap .option p {margin:10px 0;}
 #menu_wrap .option button {margin-left:5px;}
 #placesList li {list-style: none;}
 #placesList .item {position:relative;border-bottom:1px solid #888;overflow: hidden;cursor: pointer;min-height: 65px;}
@@ -188,58 +198,58 @@ input:focus ~ .highlight {
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
 
 </style>
-</head>
+</head
 <body>
-<h2>게시글 작성</h2>
-    <!-- var params = [body.username, body.phone_number, body.Latitude, body.Longitude, body.room_index, body.explanation, body.state_num, body.room_name]; -->
-    <div class="center">
-        <form action='/writeAf' method='post'>     
-            <input type='hidden' name='hidden_Latitude' id='hidden_Latitude' value="">
+  <div class="test" style="height: 510px;">
+    <form action='/writeAf' method='post'>
+    <input type='hidden' name='hidden_Latitude' id='hidden_Latitude' value="">
             <input type='hidden' name='hidden_Longitude' id='hidden_Longitude' value="">
-          <div class="group">
-            <input  type="text" name='roomname' required>
-            <span class="highlight"></span>
-            <span class="bar"></span>
-            <label>방제목</label>
-          </div>
-          <div class="group">
-            <input type="text" name = "Uname"required>
-            <span class="highlight"></span>
-            <span class="bar"></span>
-            <label>작성자</label>
-          </div>
-          <div class="group">
-            <input type="text" name='kakaoID' required>
-            <span class="highlight"></span>
-            <span class="bar"></span>
-            <label>카톡 ID</label>
-          </div>
-          <div class="group">
-            <textarea name='explanation' rows="6" cols="40" style="resize: vertical" placeholder="내용" required></textarea>
+      <h2>게시글 작성</h2>
+        <div class="center">
+            <div class="group">
+              <input  type="text" name='roomname' required>
               <span class="highlight"></span>
               <span class="bar"></span>
+              <label>방제목</label>
+            </div>
+            <div class="group">
+              <input type="text" name = "Uname"required>
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <label>작성자</label>
+            </div>
+            <div class="group">
+              <input type="text" name='kakaoID' required>
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <label>카톡 ID</label>
+            </div>
+            <div class="group">
+              <textarea name='explanation' rows="6" cols="40" style="resize: vertical" placeholder="내용" required></textarea>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+            </div>
+            <div class="group">
+              <input type="text" name='max_people' required>
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <label>최대인원수</label>
+            </div>
+            <div class="group">
+              <input type="text" name='time' required>
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <label>시간</label>
+            </div>
+
+            <div class="btns" style="">
+                 <button class="btn btn-confirm" type='submit'>참가하기</button>
+             </div>
+          <!-- </form> -->
           </div>
-          <div class="group">
-            <input type="text" name='max_people' required>
-            <span class="highlight"></span>
-            <span class="bar"></span>
-            <label>최대인원수</label>
-          </div>
-          <div class="group">
-            <input type="text" name='time' required>
-            <span class="highlight"></span>
-            <span class="bar"></span>
-            <label>시간</label>
-          </div>
-      
-          <div class="btns">
-               <button class="btn btn-confirm" type='submit'>참가하기</button>
-           </div>
         </form>
         </div>
       </div>
-
-
 <div class="map_wrap">
     <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 
@@ -247,8 +257,8 @@ input:focus ~ .highlight {
         <div class="option">
             <div>
                 <form onsubmit="searchPlaces(); return false;">
-                    키워드 : <input type="text" value="구미대학교" id="keyword" size="15"> 
-                    <button type="submit">검색하기</button> 
+                    키워드 : <input type="text" value="구미대학교" id="keyword" size="15">
+                    <button type="submit">검색하기</button>
                 </form>
             </div>
         </div>
@@ -265,17 +275,17 @@ input:focus ~ .highlight {
 // 마커를 담을 배열입니다
 var markers = [];
 
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div
     mapOption = {
         center: new kakao.maps.LatLng(36.151007757375666, 128.28914637022527 ), // 지도의 중심좌표
         level: 3 // 지도의 확대 레벨
-    };  
+    };
 
-// 지도를 생성합니다    
-var map = new kakao.maps.Map(mapContainer, mapOption); 
+// 지도를 생성합니다
+var map = new kakao.maps.Map(mapContainer, mapOption);
 
 // 장소 검색 객체를 생성합니다
-var ps = new kakao.maps.services.Places();  
+var ps = new kakao.maps.services.Places();
 
 // 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
 var infowindow = new kakao.maps.InfoWindow({zIndex:1});
@@ -294,7 +304,7 @@ function searchPlaces() {
     }
 
     // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
-    ps.keywordSearch( keyword, placesSearchCB); 
+    ps.keywordSearch( keyword, placesSearchCB);
 }
 
 // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
@@ -324,23 +334,23 @@ function placesSearchCB(data, status, pagination) {
 // 검색 결과 목록과 마커를 표출하는 함수입니다
 function displayPlaces(places) {
 
-    var listEl = document.getElementById('placesList'), 
+    var listEl = document.getElementById('placesList'),
     menuEl = document.getElementById('menu_wrap'),
-    fragment = document.createDocumentFragment(), 
-    bounds = new kakao.maps.LatLngBounds(), 
+    fragment = document.createDocumentFragment(),
+    bounds = new kakao.maps.LatLngBounds(),
     listStr = '';
-    
+
     // 검색 결과 목록에 추가된 항목들을 제거합니다
     removeAllChildNods(listEl);
 
     // 지도에 표시되고 있는 마커를 제거합니다
     removeMarker();
-    
+
     for ( var i=0; i<places.length; i++ ) {
 
         // 마커를 생성하고 지도에 표시합니다
         var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
-            marker = addMarker(placePosition, i), 
+            marker = addMarker(placePosition, i),
             itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
 
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
@@ -391,11 +401,11 @@ function getListItem(index, places) {
         itemStr += '    <span>' + places.road_address_name + '</span>' +
                     '   <span class="jibun gray">' +  places.address_name  + '</span>';
     } else {
-        itemStr += '    <span>' +  places.address_name  + '</span>'; 
+        itemStr += '    <span>' +  places.address_name  + '</span>';
     }
-                 
+
       itemStr += '  <span class="tel">' + places.phone  + '</span>' +
-                '</div>';           
+                '</div>';
 
     el.innerHTML = itemStr;
     el.className = 'item';
@@ -415,7 +425,7 @@ function addMarker(position, idx, title) {
         markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions),
             marker = new kakao.maps.Marker({
             position: position, // 마커의 위치
-            image: markerImage 
+            image: markerImage
         });
 
     marker.setMap(map); // 지도 위에 마커를 표출합니다
@@ -428,7 +438,7 @@ function addMarker(position, idx, title) {
 function removeMarker() {
     for ( var i = 0; i < markers.length; i++ ) {
         markers[i].setMap(null);
-    }   
+    }
     markers = [];
 }
 
@@ -436,7 +446,7 @@ function removeMarker() {
 function displayPagination(pagination) {
     var paginationEl = document.getElementById('pagination'),
         fragment = document.createDocumentFragment(),
-        i; 
+        i;
 
     // 기존에 추가된 페이지번호를 삭제합니다
     while (paginationEl.hasChildNodes()) {
@@ -473,29 +483,29 @@ function displayInfowindow(marker, title) {
 }
 
  // 검색결과 목록의 자식 Element를 제거하는 함수입니다
-function removeAllChildNods(el) {   
+function removeAllChildNods(el) {
     while (el.hasChildNodes()) {
         el.removeChild (el.lastChild);
     }
 }
 
-var marker = new kakao.maps.Marker({ 
-    // 지도 중심좌표에 마커를 생성합니다 
-    position: map.getCenter() 
-}); 
+var marker = new kakao.maps.Marker({
+    // 지도 중심좌표에 마커를 생성합니다
+    position: map.getCenter()
+});
 // 지도에 마커를 표시합니다
 marker.setMap(map);
 
 // 지도에 클릭 이벤트를 등록합니다
 // 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
-kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
-    
-    // 클릭한 위도, 경도 정보를 가져옵니다 
-    var latlng = mouseEvent.latLng; 
-    
+kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
+
+    // 클릭한 위도, 경도 정보를 가져옵니다
+    var latlng = mouseEvent.latLng;
+
     // 마커 위치를 클릭한 위치로 옮깁니다
     marker.setPosition(latlng);
-    
+
     var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
     message += '경도는 ' + latlng.getLng() + ' 입니다';
 
