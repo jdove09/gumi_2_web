@@ -4,6 +4,152 @@
     <meta charset="utf-8">
     <title>오늘 밥 한끼</title>
     <style>
+        * { box-sizing:border-box; }
+
+/* basic stylings ------------------------------------------ */
+body 				 { background:url(https://scotch.io/wp-content/uploads/2014/07/61.jpg); }
+.container 		{
+  font-family:'Roboto';
+  /* width:600px;
+  margin:30px auto 0; */
+  display:block;
+  background:#FFF;
+  /* padding:10px 50px 50px; */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+h2 		 {
+  text-align:center;
+  margin-bottom:50px;
+}
+/* h2 small {
+  font-weight:normal;
+  color:#888;
+  display:block;
+}
+.footer 	{ text-align:center; }
+.footer a  { color:#53B2C8; } */
+
+/* form starting stylings ------------------------------- */
+.group 			  {
+  position:relative;
+  margin-bottom:18px;
+}
+.num {
+  margin-left: 330px;
+  color:#999;
+  font-size:18px;
+  font-weight:normal;
+  left:5px;
+  top:10px;
+  transition:0.2s ease all;
+  -moz-transition:0.2s ease all;
+  -webkit-transition:0.2s ease all;
+}
+input 				{
+  font-size:18px;
+  padding:10px 10px 10px 5px;
+  display:block;
+  width:300px;
+  border:none;
+  border-bottom:1px solid #757575;
+}
+input:focus 		{ outline:none; }
+
+/* LABEL ======================================= */
+label,h5 				 {
+  color:#999;
+  font-size:18px;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  left:5px;
+  top:10px;
+  transition:0.2s ease all;
+  -moz-transition:0.2s ease all;
+  -webkit-transition:0.2s ease all;
+}
+
+button {
+  /* border: none; */
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+   width: 300px;
+   padding-top: 2px;
+   padding-bottom: 2px;
+
+}
+/* active state */
+input:focus ~ label, input:valid ~ label 		{
+  top:-20px;
+  font-size:14px;
+  color:#5264AE;
+}
+
+/* BOTTOM BARS ================================= */
+.bar 	{ position:relative; display:block; width:300px; }
+.bar:before, .bar:after 	{
+  content:'';
+  height:2px;
+  width:0;
+  bottom:1px;
+  position:absolute;
+  background:#5264AE;
+  transition:0.2s ease all;
+  -moz-transition:0.2s ease all;
+  -webkit-transition:0.2s ease all;
+}
+.bar:before {
+  left:50%;
+}
+.bar:after {
+  right:50%;
+}
+
+/* active state */
+input:focus ~ .bar:before, input:focus ~ .bar:after {
+  width:50%;
+}
+
+/* HIGHLIGHTER ================================== */
+.highlight {
+  position:absolute;
+  height:60%;
+  width:100px;
+  top:25%;
+  left:0;
+  pointer-events:none;
+  opacity:0.5;
+}
+
+/* active state */
+input:focus ~ .highlight {
+  -webkit-animation:inputHighlighter 0.3s ease;
+  -moz-animation:inputHighlighter 0.3s ease;
+  animation:inputHighlighter 0.3s ease;
+}
+
+/* ANIMATIONS ================ */
+@-webkit-keyframes inputHighlighter {
+	from { background:#5264AE; }
+  to 	{ width:0; background:transparent; }
+}
+@-moz-keyframes inputHighlighter {
+	from { background:#5264AE; }
+  to 	{ width:0; background:transparent; }
+}
+@keyframes inputHighlighter {
+	from { background:#5264AE; }
+  to 	{ width:0; background:transparent; }
+}
+
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
 .map_wrap {position:relative;width:100%;height:500px;}
@@ -46,20 +192,52 @@
 <body>
 <h2>게시글 작성</h2>
     <!-- var params = [body.username, body.phone_number, body.Latitude, body.Longitude, body.room_index, body.explanation, body.state_num, body.room_name]; -->
-<form action='/writeAf' method='post'>
-
-    방제목       : <input type='text' name='roomname'><br>
-    작성자       : <input type='text' name='Uname'><br>
-    카카오톡(ID) : <input type='text' name='kakaoID'><br>
-    <input type='hidden' name='hidden_Latitude' id='hidden_Latitude' value="">
-    <input type='hidden' name='hidden_Longitude' id='hidden_Longitude' value="">
-    내용         : <textarea name='explanation'></textarea><br>
-    최대인원수   : <input type='text' name='max_people'><br>
-    약속시간     : <input type='text' name='time'><br>
-
-    <button type='submit'>글쓰기</button>
-    <div id="clickLatlng"></div>
-</form>
+    <div class="center">
+        <form action='/writeAf' method='post'>     
+            <input type='hidden' name='hidden_Latitude' id='hidden_Latitude' value="">
+            <input type='hidden' name='hidden_Longitude' id='hidden_Longitude' value="">
+          <div class="group">
+            <input  type="text" name='roomname' required>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>방제목</label>
+          </div>
+          <div class="group">
+            <input type="text" name = "Uname"required>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>작성자</label>
+          </div>
+          <div class="group">
+            <input type="text" name='kakaoID' required>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>카톡 ID</label>
+          </div>
+          <div class="group">
+            <textarea name='explanation' rows="6" cols="40" style="resize: vertical" placeholder="내용" required></textarea>
+              <span class="highlight"></span>
+              <span class="bar"></span>
+          </div>
+          <div class="group">
+            <input type="text" name='max_people' required>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>최대인원수</label>
+          </div>
+          <div class="group">
+            <input type="text" name='time' required>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>시간</label>
+          </div>
+      
+          <div class="btns">
+               <button class="btn btn-confirm" type='submit'>참가하기</button>
+           </div>
+        </form>
+        </div>
+      </div>
 
 
 <div class="map_wrap">
@@ -320,13 +498,8 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
     
     var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
     message += '경도는 ' + latlng.getLng() + ' 입니다';
-    
-    var resultDiv = document.getElementById('clickLatlng'); 
-    resultDiv.innerHTML = message;
-
 
     var test_Latitude = document.getElementById('hidden_Latitude');
-
     document.getElementById('hidden_Latitude').value = latlng.getLat();
     document.getElementById('hidden_Longitude').value = latlng.getLng();
 

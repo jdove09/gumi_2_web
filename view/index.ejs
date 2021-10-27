@@ -13,7 +13,7 @@ Admin 키   dbef92026f44745680fd33481b0c0f7d -->
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
 .map_wrap {position:relative;width:100%;height:500px;}
-#menu_wrap {position:absolute;top:0;left:0;bottom:0;width:250px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
+#menu_wrap {position:absolute;top:0;right:30px;bottom:0;width:250px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
 .bg_white {background:#fff;}
 #menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
 #menu_wrap .option{text-align: center;}
@@ -281,7 +281,7 @@ img {
 <div class="page">
     <header style="z-index: 5;" tabindex="0">오늘 밥 한끼</header>
     <div class="map_wrap">
-        <div id="map" style="width:100%;height:100vh;position:relative;">
+      <div id="map" style="width:100%;height:100vh;position:relative;">
             <div style="z-index: 7;" id="nav-container">
                 <div class="bg"></div>
                 <div class="button" tabindex="0">
@@ -291,16 +291,16 @@ img {
                 </div>
                 <div id="nav-content" tabindex="0">
                 <ul>
-                    <li><a href="#0">검색</a></li>
-                    <li><a href="#0">지도</a></li>
-                    <li><a href="#0">방 생성</a></li>
+                    <li><a href="/write">검색</a></li>
+                    <li><a href="/">지도</a></li>
+                    <li><a href="/write">방 생성</a></li>
 
                     <li class="small"><a href="#0">주현규</a><a href="#0">김연웅</a><a href="#0">박용주</a></li>
                 </ul>
                 </div>
             </div>
         </div>
-        <div id="menu_wrap" class="bg_white" style="margin-left: 1840px; margin-top: 80px;">
+        <div id="menu_wrap" class="bg_white" style="margin-top: 80px;">
             <div class="option">
                 <div>
                     <p></p>
@@ -606,8 +606,13 @@ positions.push({
     '<div style=\" BORDER: SOLID 1px;width: 100%; height: 100px; white-space: pre-line;\">'+ $("#hidden_explanation_"+i).val() +'</div><br>'+
     '</div>'+
     '<div>'+
-    add_coment(i)+
+    add_coment(i)+  //참가인원에 해당하는 내용
+    '<form action=\'/addcoment\' method=\'post\'>'+
+    '<input type=\"hidden\" value=\''+i+ '\'name = \"hidden_mother\">'+
+    '참여자:<input type=\"text\" name=\"input_user\">카카오톡ID<input type=\'text\' name=\'input_kakao\'> <button>참가하기</button>'+
+    '</form>'+
     '</div>'
+    
     // <!--생략된 파트는 코멘트 div-->
     ,
     latlng: new kakao.maps.LatLng(parseFloat($("#hidden_Latitude_"+i).val()), parseFloat($("#hidden_Longitude_"+i).val()))      //jdove
@@ -632,7 +637,7 @@ var infowindow = new kakao.maps.InfoWindow({
 // 이벤트 리스너로는 클로저를 만들어 등록합니다
 // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
 kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
-kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+// kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
 
 }
 </script>

@@ -30,8 +30,8 @@ app.get('/', function (req, res) {
             else {
               console.log(rows);
               console.log(coment_rows);
-              test.rlenghth = rows.length;  //게시글 전체길이
-              test.coment = coment_rows;  //댓글 전체길이
+              test.main_length = rows.length;  //게시글 전체길이
+              test.comment_length = coment_rows.length;  //댓글 전체길이
               res.render('index.ejs', {'list' : rows, 'list2' : coment_rows});  //ejs로 쏴줌
               }
         });
@@ -45,6 +45,23 @@ app.get('/write', function (req, res) {
   res.render('write.ejs');
 })
 
+app.post('/addcoment', function (req, res) {
+
+  var body = req.body;
+  console.log("행 길이"+test.comment_length);
+  console.log(body);
+  
+  //순서를 맞춰야해용
+  var sql = 'INSERT INTO ttest VALUES(?, ?, ?, ?)';
+  var params= [
+    test.comment_length, body.hidden_mother, body.input_user, body.input_kakao
+  ];
+  console.log(params);
+  conn.query(sql, params, function(err) {
+      if(err) console.log('query is not excuted. insert fail...\n' + err);
+      else res.redirect('/');
+  });
+});
 
 app.post('/writeAf', function (req, res) {
 
@@ -55,7 +72,7 @@ app.post('/writeAf', function (req, res) {
   //순서를 맞춰야해용
   var sql = 'INSERT INTO testtable VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
   var params= [
-    test.rlenghth, body.roomname, body.Uname, body.kakaoID, body.hidden_Latitude, body.hidden_Longitude, body.explanation, '1', '1', body.max_people, body.time
+    test.main_length, body.roomname, body.Uname, body.kakaoID, body.hidden_Latitude, body.hidden_Longitude, body.explanation, '1', '1', body.max_people, body.time
   ];
   console.log(params);
   conn.query(sql, params, function(err) {
