@@ -10,6 +10,72 @@ Admin 키   dbef92026f44745680fd33481b0c0f7d -->
     <title>오늘 밥 한끼 </title>
     <style>
       /* menu_wrap 오른쪽으로 변경 */
+
+      #box1,
+    #box4 {
+      float: left;
+    }
+
+    #box1{
+      color: #FFFFFF;
+    }
+    #box2,
+    #box5 {
+      float: right;
+    }
+
+    #box2 {
+      color: gray;
+      margin-right: 5px;
+    }
+    #box3 {
+      float: left;
+    }
+
+    #box6 {
+      font-size: 11px;
+      border: solid 1px;
+      width: 100%;
+      height: 100%;
+      white-space: normal;
+      background-color: white;
+    }
+
+    #box7 {
+      width: 100%;
+      border: 1px solid;
+      border-collapse: collapse;
+    }
+
+    #aa {
+      width: 500px;
+      height: 100%;
+      background-color: #F5F6F7;
+    }
+
+    #tableitem{
+      border: 1px solid #444444;
+      padding: 5px;
+      background-color: white;
+      font-size: 10px;
+    }
+    #input1 {
+      width: 100px;
+    }
+
+    #input2 {
+      width: 137px;
+    }
+
+    #gray {
+      background-color: #262626;
+      height: 25px;
+    }
+
+    #box1,
+    #box2 {
+      font-size: 16px;
+    }
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
 .map_wrap {position:relative;width:100%;height:500px;}
@@ -291,7 +357,7 @@ img {
                 </div>
                 <div id="nav-content" tabindex="0">
                 <ul>
-                    <li><a href="/write">검색</a></li>
+                    <li><a onclick="show_search()">검색</a></li>
                     <li><a href="/">지도</a></li>
                     <li><a href="/write">방 생성</a></li>
 
@@ -300,7 +366,7 @@ img {
                 </div>
             </div>
         </div>
-        <div id="menu_wrap" class="bg_white" style="margin-top: 80px;">
+        <div id="menu_wrap" class="bg_white" style="margin-top: 80px; display: none;" >
             <div class="option">
                 <div>
                     <p></p>
@@ -346,17 +412,22 @@ img {
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=69a60e53c42d5b48a81244b569ce7240&libraries=services"></script>
 <script>
+  
+  function show_search(){
+      if($('#menu_wrap').css('display') == 'none'){
+      $('#menu_wrap').show();
+    }else{
+      $('#menu_wrap').hide();
+    }
+  }
 
-function makeOverListener(map, marker, infowindow) {
-    return function() {
-        infowindow.open(map, marker);
-    };
-}
+
 
 // 인포윈도우를 닫는 클로저를 만드는 함수입니다
-function makeOutListener(infowindow) {
+function closeOverlay() {
+  console.log("눌러졌어")
     return function() {
-        infowindow.close();
+        infowindow.setMap(null);
     };
 }
 
@@ -579,10 +650,6 @@ function removeAllChildNods(el) {
 
 var positions = []; //userroom을 담을 배열
 
-
-$( document ).ready(function() {
-});
-
 alert("행길이?" + $("#hidden_row_count").val())
 
 function add_coment(mother_id){
@@ -590,7 +657,7 @@ function add_coment(mother_id){
   var j=0
   for( j=0; j<$("#hidden_coment_count").val(); j++){
     if($("#hidden_mother_id_"+j).val()==mother_id){
-      text+="<span>"+$("#hidden_coment_name_"+j).val()+"</span><span>"+$("#hidden_coment_coment_"+j).val()+"</span><br>"
+      text+='<tr><td id=\"tableitem\">'+$("#hidden_coment_name_"+j).val()+'</td><td id="tableitem">'+$("#hidden_coment_coment_"+j).val()+'</td></tr>'
     }
   } 
   return text
@@ -612,29 +679,33 @@ var coment_count = 2;
 for(var i = 0; i <= $("#hidden_row_count").val();  i++){                 //배열에 push해주는값    jdove 동적생성
 positions.push({
     content:
-    '<div style=\" BORDER: SOLID 1px;width: 400px; height: 250x; white-space: pre-line;\">'+
-    '<span>방제목: '+$("#hidden_room_name_"+i).val()+'&nbsp; &nbsp;  </span> <span>인원수_'+$("#hidden_now_people_"+i).val()+'/'+$("#hidden_max_people_"+i).val()+'</span>'+
-    '<div> 일시:'+ $("#hidden_time_"+i).val()+'</div>'+
-    '<span> 유저이름:'+ $("#hidden_username_"+i).val()+'&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span> <span> 카카오톡ID ='+ $("#hidden_phone_number_"+i).val()+'</span>'+
-    '<br><br><div>설명창</div>'+
-    '<div style=\" BORDER: SOLID 1px;width: 100%; height: 100px; white-space: pre-line;\">'+ $("#hidden_explanation_"+i).val() +'</div><br>'+
-    '</div>'+
-    '<div>'+
-    add_coment(i)+  //참가인원에 해당하는 내용
-    '<form action=\'/addcoment\' method=\'post\'>'+
-    '<input type=\"hidden\" value=\''+count_coment(i)+ '\'name = \"hidden_personal_count\">'+
-    '<input type=\"hidden\" value=\''+i+ '\'name = \"hidden_mother\">'+
-    '참여자:<input type=\"text\" name=\"input_user\">카카오톡ID<input type=\'text\' name=\'input_kakao\'> <button>참가하기</button>'+
-    '</form>'+
+    '<div id=\"aa\">'+
+    '<div id=\"gray\">'+
+      '<div id=\"box1\">방 제목 :'+ $("#hidden_room_name_"+i).val()+ '</div>'+
+      '<div id=\"box2\">'+$("#hidden_now_people_"+i).val()+'/'+$("#hidden_max_people_"+i).val() +'</div><br></div>'+
+    '<div id=\"box3\">일시 :'+ $("#hidden_time_"+i).val()+'</div><br>'+
+    '<div id=\"box4\">유저이름 :'+$("#hidden_username_"+i).val()+' </div>'+
+    '<div id=\"box5\">카카오톡ID :'+$("#hidden_phone_number_"+i).val()+' </div><br><br>'+
+    '<div>설명창</div>'+
+    '<div id=\"box6\" style=\"white-space: pre-line;\">'+$("#hidden_explanation_"+i).val()+'</div><br>'+
+    '<table style=\"width: 100%; border: 1px solid #444444; border-collapse: collapse;\">'+
+        '<thead> <tr><th colspan=\"2\" style=\"BACKGROUND-COLOR: #D9D9D9;\">참가자목록 </th> </tr></thead><tbody>'+
+        add_coment(i)+
+        '</tbody></table></div>'+
+    '<form action=\"/addcoment\" method=\'post\'>'+
+      '<input type=\"hidden\" value=\''+count_coment(i)+ '\'name = \"hidden_personal_count\">'+
+      '<input type=\"hidden\" value=\''+i+ '\'name = \"hidden_mother\">'+
+        '이름 : <input type=\" text\" id=\"input1\" name=\"input_user\">카카오톡ID : <input type=\"text\" id=\"input2\" name=\'input_kakao\'>'+
+      '<button style=\"float:right; background-color: #a6a6a6; border-radius: 5px;\">참가하기</button>'+
+      '</form>'+
     '</div>'
-    
+  
     // <!--생략된 파트는 코멘트 div-->
     ,
     latlng: new kakao.maps.LatLng(parseFloat($("#hidden_Latitude_"+i).val()), parseFloat($("#hidden_Longitude_"+i).val()))      //jdove
 });
 }
 
-alert("포지션 길이는 : "+ positions.length);
 
 for (var i = 0; i <= positions.length; i ++) {
 // 마커를 생성합니다
@@ -651,9 +722,20 @@ var infowindow = new kakao.maps.InfoWindow({
 // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
 // 이벤트 리스너로는 클로저를 만들어 등록합니다
 // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+kakao.maps.event.addListener(marker, 'click', makerclickListener(map, marker, infowindow));
 // kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+kakao.maps.event.addListener(map, 'click', makeOutListener(infowindow));
+}
+function makerclickListener(map, marker, infowindow) {
+  return function() {
+     infowindow.open(map, marker);
+  }
+}
 
+function makeOutListener(infowindow) {
+    return function() {
+        infowindow.close();
+    };
 }
 </script>
 </body>
