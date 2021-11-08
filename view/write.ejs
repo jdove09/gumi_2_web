@@ -247,9 +247,8 @@ img {
 
 
 h2        {
+
   margin-top:0px;
-  margin-left: 945px;
-  /* text-align:center;
   /* margin-bottom:50px; */
   /* 일단 keep */
 }
@@ -266,11 +265,11 @@ h2        {
 .group            {
   position:relative;
   margin-bottom:18px;
-  left: 45%;
+  left: 10%;
 
 }
 .btns {
-  margin-left:943px;
+  margin-left: 14%;
 }
 .num {
   margin-left: 330px;
@@ -385,13 +384,15 @@ input:focus ~ .highlight {
   to    { width:0; background:transparent; }
 }
 
-.map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
+.map_wrap, .map_wrap * {
+  /* margin:0; */
+  padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
 .map_wrap {position:fixed;width:100%;height:900px;}
-#menu_wrap {position:absolute;top:0;left:0;bottom:0;width:250px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
+#menu_wrap {position:absolute;top:7%;left:0;bottom:0;width:250px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
 .bg_white {background:#fff;}
 #menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
-#menu_wrap .option{text-align: center;}
+#menu_wrap .option{text-align: center; margin: 0px;}
 #menu_wrap .option p {margin:10px 0;}
 #menu_wrap .option button {margin-left:5px;}
 #placesList li {list-style: none;}
@@ -425,96 +426,97 @@ input:focus ~ .highlight {
 </style>
 </head>
 <body>
-  <div class="page">
-    <header style="z-index: 5;" tabindex="0">오늘 밥 한끼</header> 
-      <div id='yeon_page'>
-        <div id="content_write">
-          <div style="z-index: 7;" id="nav-container">
-            <div class="bg"></div>
-              <div class="button" tabindex="0">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </div>
-              <div id="nav-content" tabindex="0">
-                <ul>
-                  <li><a onclick="show_search()">검색</a></li>
-                  <li><a href="/">지도</a></li>
-                  <li><a href="/write">방 생성</a></li>
+<div class="page">
+  <header style="z-index: 5;" tabindex="0">오늘 밥 한끼</header> 
+  <div id='yeon_page'>
+    <div id="content_write">
+      <div style="z-index: 7;" id="nav-container">
+        <div class="bg"></div>
+        <div class="button" tabindex="0">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </div>
+        <div id="nav-content" tabindex="0">
+          <ul>
+            <li><a onclick="show_search()">검색</a></li>
+            <li><a href="/">지도</a></li>
+            <li><a href="/write">방 생성</a></li>
+            <li class="small"><a href="#0">주현규</a><a href="#0">김연웅</a><a href="#0">박용주</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="map_wrap">
+       <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 
-                  <li class="small"><a href="#0">주현규</a><a href="#0">김연웅</a><a href="#0">박용주</a></li>
-                </ul>
-              </div>
+       <div class="test" style="height: 51%;position: absolute;z-index: 5;right: 5%;top: 10%; width: 30%; background:rgba(0, 0, 0, 0.7);" >
+        <form action='/writeAf' method='post' style="width: 100%; height: 100%;">
+        <input type='hidden' name='hidden_Latitude' id='hidden_Latitude' value="">
+        <input type='hidden' name='hidden_Longitude' id='hidden_Longitude' value="">
+          <div class="center">
+            <h2 style="text-align: center;
+            color: white;
+            font-size: 25px;
+            margin: 8px; ">게시글 작성</h2>
+            <div class="group">
+              <input style="font-size: 20px;" type="text" name='roomname' required>
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <label>방제목</label>
+            </div>
+            <div class="group">
+              <input style="font-size: 20px;" type="text" name = "Uname"required>
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <label>작성자</label>
+            </div>
+            <div class="group">
+              <input style="font-size: 20px;" type="text" name='kakaoID' required>
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <label>카톡 ID</label>
+            </div>
+            <div class="group">
+              <textarea  name='explanation' rows="6" cols="40" style="resize: vertical; width:340px;" placeholder="내용" required></textarea>
+              <span class="highlight"></span>
+              <span class="bar"></span>
+            </div>
+            <div class="group">
+              <input style="font-size: 20px;" type="text" name='max_people' required>
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <label>최대인원수</label>
+            </div>
+            <div class="group">
+              <input style="font-size: 20px;" type="text" name='time' required>
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <label>시간</label>
+            </div>
+
+            <div class="btns">
+              <button class="btn btn-confirm" type='submit'>방생성하기</button>
             </div>
           </div>
-          <div class="test" style="height: 510px;">
-            <form action='/writeAf' method='post'>
-            <input type='hidden' name='hidden_Latitude' id='hidden_Latitude' value="">
-                    <input type='hidden' name='hidden_Longitude' id='hidden_Longitude' value="">
-                <div class="center">
-                  <h2>게시글 작성</h2>
-                    <div class="group">
-                      <input  type="text" name='roomname' required>
-                      <span class="highlight"></span>
-                      <span class="bar"></span>
-                      <label>방제목</label>
-                    </div>
-                    <div class="group">
-                      <input type="text" name = "Uname"required>
-                      <span class="highlight"></span>
-                      <span class="bar"></span>
-                      <label>작성자</label>
-                    </div>
-                    <div class="group">
-                      <input type="text" name='kakaoID' required>
-                      <span class="highlight"></span>
-                      <span class="bar"></span>
-                      <label>카톡 ID</label>
-                    </div>
-                    <div class="group">
-                      <textarea name='explanation' rows="6" cols="40" style="resize: vertical" placeholder="내용" required></textarea>
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                    </div>
-                    <div class="group">
-                      <input type="text" name='max_people' required>
-                      <span class="highlight"></span>
-                      <span class="bar"></span>
-                      <label>최대인원수</label>
-                    </div>
-                    <div class="group">
-                      <input type="text" name='time' required>
-                      <span class="highlight"></span>
-                      <span class="bar"></span>
-                      <label>시간</label>
-                    </div>
-  
-                    <div class="btns">
-                        <button class="btn btn-confirm" type='submit'>방생성하기</button>
-                    </div>
-                  <!-- </form> -->
-                  </div>
+        </form>
+         </div>
+         <div id="menu_wrap" class="bg_white">
+            <div class="option">
+              <div>
+                <form onsubmit="searchPlaces(); return false;">
+                    키워드 : <input type="text" value="구미대학교" id="keyword" size="15">
+                    <button type="submit">검색하기</button>
                 </form>
+              </div>
             </div>
-            <div class="map_wrap">
-                <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-  
-                <div id="menu_wrap" class="bg_white">
-                    <div class="option">
-                        <div>
-                            <form onsubmit="searchPlaces(); return false;">
-                                키워드 : <input type="text" value="구미대학교" id="keyword" size="15">
-                                <button type="submit">검색하기</button>
-                            </form>
-                        </div>
-                    </div>
-                    <hr>
-                    <ul id="placesList"></ul>
-                    <div id="pagination"></div>
-                </div>
-            </div>  
-      </div>
+            <hr>
+            <ul id="placesList"></ul>
+            <div id="pagination"></div>
+         </div>
+      </div>  
+    </div>
   </div>
+</div>
 
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -643,7 +645,7 @@ function getListItem(index, places) {
     var el = document.createElement('li'),
     itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
                 '<div class="info">' +
-                '   <h5>' + places.place_name + '</h5>';
+                '   <h3>' + places.place_name + '</h3>';
 
     if (places.road_address_name) {
         itemStr += '    <span>' + places.road_address_name + '</span>' +
