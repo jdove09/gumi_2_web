@@ -348,24 +348,24 @@ img {
     <header style="z-index: 5;" tabindex="0">오늘 밥 한끼</header>
     <div class="map_wrap">
       <div id="map" style="width:100%;height:100vh;position:relative;">
-            <div style="z-index: 7;" id="nav-container">
-                <div class="bg"></div>
-                <div class="button" tabindex="0">
+          <div style="z-index: 7;" id="nav-container">
+            <div class="bg"></div>
+              <div class="button" tabindex="0">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-                </div>
-                <div id="nav-content" tabindex="0">
+              </div>
+              <div id="nav-content" tabindex="0">
                 <ul>
-                    <li><a onclick="show_search()">검색</a></li>
-                    <li><a href="/">지도</a></li>
-                    <li><a href="/write">방 생성</a></li>
+                  <li><a onclick="show_search()">검색</a></li>
+                  <li><a href="/">지도</a></li>
+                  <li><a href="/write">방 생성</a></li>
 
-                    <li class="small"><a href="#0">주현규</a><a href="#0">김연웅</a><a href="#0">박용주</a></li>
+                  <li class="small"><a href="#0">주현규</a><a href="#0">김연웅</a><a href="#0">박용주</a></li>
                 </ul>
-                </div>
-            </div>
-        </div>
+              </div>
+          </div>
+      </div>
         <div id="menu_wrap" class="bg_white" style="margin-top: 80px; display: none;" >
             <div class="option">
                 <div>
@@ -379,7 +379,7 @@ img {
             <hr>
             <ul id="placesList"></ul>
             <div id="pagination"></div>
-        </div>
+      </div>
     </div>
 </div>
 
@@ -650,7 +650,6 @@ function removeAllChildNods(el) {
 
 var positions = []; //userroom을 담을 배열
 
-alert("행길이?" + $("#hidden_row_count").val())
 
 function add_coment(mother_id){
   var text="";

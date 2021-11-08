@@ -79,7 +79,6 @@ app.post('/addcoment', function (req, res) {
 app.post('/writeAf', function (req, res) {
 
   var body = req.body;
-  console.log("행 길이"+test.rlenghth);
   console.log(body);
   
   //순서를 맞춰야해용

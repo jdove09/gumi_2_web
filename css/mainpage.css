@@ -60,7 +60,7 @@ main small {
 #nav-container {
   position: fixed;
   height: 100vh;
-  width: 100%;
+  width: 340px;
   pointer-events: none;
 }
 #nav-container .bg {
@@ -93,7 +93,7 @@ main small {
   background: transparent;
   border-radius: 0;
   height: 70px;
-  width: 30px;
+  width: 335px;
   cursor: pointer;
   pointer-events: auto;
   margin-left: 25px;

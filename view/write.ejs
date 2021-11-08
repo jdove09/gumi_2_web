@@ -20,6 +20,231 @@ body              { background:url(https://scotch.io/wp-content/uploads/2014/07/
   top: 40%;
   transform: translate(-50%, -50%);
 }
+* {
+  outline: none;
+}
+
+strong {
+  font-weight: 600;
+}
+
+.page {
+  width: 100%;
+  height: 100vh;
+  background: #fdfdfd;
+  font-family: 'Encode Sans Condensed', sans-serif;
+  font-weight: 600;
+  letter-spacing: .03em;
+  color: #212121;
+}
+
+header {
+  display: flex;
+  position: fixed;
+  width: 100%;
+  height: 70px;
+  background: #212121;
+  color: #fff;
+  justify-content: center;
+  align-items: center;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+main {
+  padding: 70px 20px 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+main > div {
+  margin: auto;
+  max-width: 600px;
+}
+
+main h2 span {
+  color: #BF7497;
+}
+
+main p {
+  line-height: 1.5;
+  font-weight: 200;
+  margin: 20px 0;
+}
+
+main small {
+  font-weight: 300;
+  color: #888;
+}
+
+#nav-container {
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  pointer-events: none;
+}
+#nav-container .bg {
+  position: absolute;
+  top: 70px;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 70px);
+  visibility: hidden;
+  opacity: 0;
+  transition: .3s;
+  background: #000;
+}
+#nav-container:focus-within .bg {
+  visibility: visible;
+  opacity: .6;
+}
+#nav-container * {
+  visibility: visible;
+}
+
+.button {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 1;
+  -webkit-appearance: none;
+  border: 0;
+  background: transparent;
+  border-radius: 0;
+  height: 70px;
+  width: 30px;
+  cursor: pointer;
+  pointer-events: auto;
+  margin-left: 25px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.icon-bar {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: #aaa;
+  transition: .3s;
+}
+.icon-bar + .icon-bar {
+  margin-top: 5px;
+}
+
+#nav-container:focus-within .button {
+  pointer-events: none;
+}
+#nav-container:focus-within .icon-bar:nth-of-type(1) {
+  transform: translate3d(0,8px,0) rotate(45deg);
+}
+#nav-container:focus-within .icon-bar:nth-of-type(2) {
+  opacity: 0;
+}
+#nav-container:focus-within .icon-bar:nth-of-type(3) {
+  transform: translate3d(0,-8px,0) rotate(-45deg);
+}
+
+#nav-content {
+  margin-top: 70px;
+  padding: 20px;
+  width: 90%;
+  max-width: 300px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: calc(100% - 70px);
+  background: #ececec;
+  pointer-events: auto;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  transform: translateX(-100%);
+  transition: transform .3s;
+  will-change: transform;
+  contain: paint;
+}
+
+#nav-content ul {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#nav-content li a {
+  padding: 10px 5px;
+  display: block;
+  text-transform: uppercase;
+  transition: color .1s;
+}
+
+#nav-content li a:hover {
+  color: #BF7497;
+}
+
+#nav-content li:not(.small) + .small {
+  margin-top: auto;
+}
+
+.small {
+  display: flex;
+  align-self: center;
+}
+
+.small a {
+  font-size: 12px;
+  font-weight: 400;
+  color: #888;
+}
+.small a + a {
+  margin-left: 15px;
+}
+
+#nav-container:focus-within #nav-content {
+  transform: none;
+}
+
+
+
+
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+a,
+a:visited,
+a:focus,
+a:active,
+a:link {
+  text-decoration: none;
+  outline: 0;
+}
+
+a {
+  color: currentColor;
+  transition: .2s ease-in-out;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+img {
+  vertical-align: middle;
+  height: auto;
+  width: 100%;
+}
+
 
 h2        {
   margin-top:0px;
@@ -62,7 +287,7 @@ input             {
   font-size:18px;
   padding:10px 10px 10px 5px;
   display:block;
-  width:300px;
+  width:340px;
   border:none;
   border-bottom:1px solid #757575;
 }
@@ -162,7 +387,7 @@ input:focus ~ .highlight {
 
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
-.map_wrap {position:relative;width:100%;height:500px;}
+.map_wrap {position:fixed;width:100%;height:900px;}
 #menu_wrap {position:absolute;top:0;left:0;bottom:0;width:250px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
 .bg_white {background:#fff;}
 #menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
@@ -198,75 +423,98 @@ input:focus ~ .highlight {
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
 
 </style>
-</head
+</head>
 <body>
-  <div class="test" style="height: 510px;">
-    <form action='/writeAf' method='post'>
-    <input type='hidden' name='hidden_Latitude' id='hidden_Latitude' value="">
-            <input type='hidden' name='hidden_Longitude' id='hidden_Longitude' value="">
-      <h2>게시글 작성</h2>
-        <div class="center">
-            <div class="group">
-              <input  type="text" name='roomname' required>
-              <span class="highlight"></span>
-              <span class="bar"></span>
-              <label>방제목</label>
-            </div>
-            <div class="group">
-              <input type="text" name = "Uname"required>
-              <span class="highlight"></span>
-              <span class="bar"></span>
-              <label>작성자</label>
-            </div>
-            <div class="group">
-              <input type="text" name='kakaoID' required>
-              <span class="highlight"></span>
-              <span class="bar"></span>
-              <label>카톡 ID</label>
-            </div>
-            <div class="group">
-              <textarea name='explanation' rows="6" cols="40" style="resize: vertical" placeholder="내용" required></textarea>
-                <span class="highlight"></span>
-                <span class="bar"></span>
-            </div>
-            <div class="group">
-              <input type="text" name='max_people' required>
-              <span class="highlight"></span>
-              <span class="bar"></span>
-              <label>최대인원수</label>
-            </div>
-            <div class="group">
-              <input type="text" name='time' required>
-              <span class="highlight"></span>
-              <span class="bar"></span>
-              <label>시간</label>
-            </div>
+  <div class="page">
+    <header style="z-index: 5;" tabindex="0">오늘 밥 한끼</header> 
+      <div id='yeon_page'>
+        <div id="content_write">
+          <div style="z-index: 7;" id="nav-container">
+            <div class="bg"></div>
+              <div class="button" tabindex="0">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </div>
+              <div id="nav-content" tabindex="0">
+                <ul>
+                  <li><a onclick="show_search()">검색</a></li>
+                  <li><a href="/">지도</a></li>
+                  <li><a href="/write">방 생성</a></li>
 
-            <div class="btns" style="">
-                 <button class="btn btn-confirm" type='submit'>방생성하기</button>
-             </div>
-          <!-- </form> -->
+                  <li class="small"><a href="#0">주현규</a><a href="#0">김연웅</a><a href="#0">박용주</a></li>
+                </ul>
+              </div>
+            </div>
           </div>
-        </form>
-        </div>
-      </div>
-<div class="map_wrap">
-    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-
-    <div id="menu_wrap" class="bg_white">
-        <div class="option">
-            <div>
-                <form onsubmit="searchPlaces(); return false;">
-                    키워드 : <input type="text" value="구미대학교" id="keyword" size="15">
-                    <button type="submit">검색하기</button>
+          <div class="test" style="height: 510px;">
+            <form action='/writeAf' method='post'>
+            <input type='hidden' name='hidden_Latitude' id='hidden_Latitude' value="">
+                    <input type='hidden' name='hidden_Longitude' id='hidden_Longitude' value="">
+                <div class="center">
+                  <h2>게시글 작성</h2>
+                    <div class="group">
+                      <input  type="text" name='roomname' required>
+                      <span class="highlight"></span>
+                      <span class="bar"></span>
+                      <label>방제목</label>
+                    </div>
+                    <div class="group">
+                      <input type="text" name = "Uname"required>
+                      <span class="highlight"></span>
+                      <span class="bar"></span>
+                      <label>작성자</label>
+                    </div>
+                    <div class="group">
+                      <input type="text" name='kakaoID' required>
+                      <span class="highlight"></span>
+                      <span class="bar"></span>
+                      <label>카톡 ID</label>
+                    </div>
+                    <div class="group">
+                      <textarea name='explanation' rows="6" cols="40" style="resize: vertical" placeholder="내용" required></textarea>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                    </div>
+                    <div class="group">
+                      <input type="text" name='max_people' required>
+                      <span class="highlight"></span>
+                      <span class="bar"></span>
+                      <label>최대인원수</label>
+                    </div>
+                    <div class="group">
+                      <input type="text" name='time' required>
+                      <span class="highlight"></span>
+                      <span class="bar"></span>
+                      <label>시간</label>
+                    </div>
+  
+                    <div class="btns">
+                        <button class="btn btn-confirm" type='submit'>방생성하기</button>
+                    </div>
+                  <!-- </form> -->
+                  </div>
                 </form>
             </div>
-        </div>
-        <hr>
-        <ul id="placesList"></ul>
-        <div id="pagination"></div>
-    </div>
-</div>
+            <div class="map_wrap">
+                <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+  
+                <div id="menu_wrap" class="bg_white">
+                    <div class="option">
+                        <div>
+                            <form onsubmit="searchPlaces(); return false;">
+                                키워드 : <input type="text" value="구미대학교" id="keyword" size="15">
+                                <button type="submit">검색하기</button>
+                            </form>
+                        </div>
+                    </div>
+                    <hr>
+                    <ul id="placesList"></ul>
+                    <div id="pagination"></div>
+                </div>
+            </div>  
+      </div>
+  </div>
 
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
